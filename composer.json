@@ -1,0 +1,11 @@
+{
+    "name": "orckid-lab/file-manager",
+    "require": {
+        "intervention/image": "^2.3"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php artisan generate:symlink"
+        ]
+    }
+}
