@@ -8,9 +8,9 @@ Route::group([
 	'namespace' => 'OrckidLab\FileManager\Core\Controllers'
 
 ], function () {
-	//Route::match(['get', 'post'], '/', 'FileManagerController@index');
+	Route::match(['get', 'post'], '/', 'FileManagerController@index');
 
-	Route::post('/', 'FileManagerController@index');
+	/*Route::post('/', 'FileManagerController@index');*/
 	
 	Route::post('upload', 'FileController@store');
 
