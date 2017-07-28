@@ -9,6 +9,7 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<link rel="icon" type="image/png" href="/img/app/favicon.png"/>
 	<link rel="stylesheet" href="/css/app.css"/>
+	<link rel="stylesheet" href="https://github.com/JosephusPaye/Keen-UI/edit/master/dist/keen-ui.min.css">
 	@stack('stylesheets')
 </head>
 <body class="default-template">
@@ -20,7 +21,6 @@
 		<file-manager :payload="{{$payload}}"></file-manager>
 	</main>
 </div>
-<vue-modal id="modals-wrapper"></vue-modal>
 </body>
 <script>window.Laravel = {"csrfToken": "{{ csrf_token() }}"};</script>
 <script src="/js/app.js"></script>
