@@ -15,9 +15,9 @@
 <body class="default-template">
 <div id="global">
 	<main id="main-content">
-		<div class="progress-bar">
+		{{--<div class="progress-bar">
 			<div class="indeterminate"></div>
-		</div>
+		</div>--}}
 		{{--<file-manager></file-manager>--}}
 		<file-manager-modal :multiple="true"></file-manager-modal>
 		<file-manager-modal :multiple="false"></file-manager-modal>
