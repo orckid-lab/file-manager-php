@@ -21,10 +21,19 @@ class ValidationServiceProvider extends ServiceProvider
 			return !Upload::whereParentId($directory_id)->whereName($formatted_Name)->first();
 		});
 
+		Validator::replacer('file_exists', function ($message, $attribute, $rule, $parameters) {
+			$file = Input::file('file')->getClientOriginalName();
+			return "File $file already exist in the selected directory.";
+		});
+
 		Validator::extend('directory_exists', function ($attribute, $path, $parameters) {
 			$folder_name = strtolower((preg_replace('/[^A-Za-z0-9\-]/', '-', Input::get('name'))));
 			$directory_id = Upload::directory($path)->id;
 			return !Upload::whereParentId($directory_id)->whereName($folder_name)->first();
+		});
+
+		Validator::replacer('directory_exists', function () {
+			return 'Directory with same name already exist';
 		});
 
 		Validator::extend('validate_update_action', function ($attribute, $value, $parameters) {

@@ -9,7 +9,7 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<link rel="icon" type="image/png" href="/img/app/favicon.png"/>
 	<link rel="stylesheet" href="/css/app.css"/>
-	<link rel="stylesheet" href="https://github.com/JosephusPaye/Keen-UI/edit/master/dist/keen-ui.min.css">
+	<link rel="stylesheet" href="/css/keen-ui.min.css">
 	@stack('stylesheets')
 </head>
 <body class="default-template">
@@ -18,7 +18,9 @@
 		<div class="progress-bar">
 			<div class="indeterminate"></div>
 		</div>
-		<file-manager :payload="{{$payload}}"></file-manager>
+		{{--<file-manager></file-manager>--}}
+		<file-manager-modal :multiple="true"></file-manager-modal>
+		<file-manager-modal :multiple="false"></file-manager-modal>
 	</main>
 </div>
 </body>

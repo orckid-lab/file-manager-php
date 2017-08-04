@@ -205,7 +205,6 @@ class Upload extends Model
 	public static function scopeDirectory($query, $path)
 	{
 		$segments = explode('/', $path);
-
 		return Upload::whereName(end($segments))->whereType('directory')->get()->filter(function ($upload, $key) use ($path) {
 			return $upload->path == $path;
 		})->first();
