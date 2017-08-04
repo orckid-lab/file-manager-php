@@ -9,7 +9,7 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<link rel="icon" type="image/png" href="/img/app/favicon.png"/>
 	<link rel="stylesheet" href="/css/app.css"/>
-	<link rel="stylesheet" href="/css/keen-ui.min.css">
+	{{--<link rel="stylesheet" href="/css/keen-ui.min.css">--}}
 	@stack('stylesheets')
 </head>
 <body class="default-template">
