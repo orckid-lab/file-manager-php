@@ -19,7 +19,7 @@
 			<div class="indeterminate"></div>
 		</div>--}}
 		{{--<file-manager></file-manager>--}}
-		<file-manager-modal :multiple="true"></file-manager-modal>
+		<file-manager-modal :multiple="true" :placeholder="'Drag and drop files here or click to select files'"></file-manager-modal>
 		<file-manager-modal :multiple="false"></file-manager-modal>
 	</main>
 </div>
