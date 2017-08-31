@@ -4,7 +4,9 @@ namespace OrckidLab\FileManager\Core\Controllers;
 
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use OrckidLab\FileManager\Core\FileManagerPayload;
 use OrckidLab\FileManager\Core\Model\Upload;

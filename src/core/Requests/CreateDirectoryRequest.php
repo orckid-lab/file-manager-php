@@ -3,6 +3,7 @@
 namespace OrckidLab\FileManager\Core\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use OrckidLab\FileManager\Core\Model\Upload;
 
@@ -54,6 +55,8 @@ class CreateDirectoryRequest extends FormRequest
 		$this->offsetSet('type','directory');
 		$this->offsetSet('parent_id', $parent_directory->id);
 		$this->offsetSet('token', md5($folder_name . $full_path . strtotime(date('Y-m-d H:i:s'))));
+		$this->offsetSet('created_by', Auth::id());
+		$this->offsetSet('updated_by', Auth::id());
 
 		$this->upload = Upload::create($this->all());
 	}

@@ -2,6 +2,7 @@
 
 namespace OrckidLab\FileManager\Core\Model;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use OrckidLab\FileManager\Core\UploadFormatter;
 
@@ -19,7 +20,9 @@ class Upload extends Model
 		'type',
 		'parent_id',
 		'size',
-		'token'
+		'token',
+		'created_by',
+		'updated_by'
 	];
 
 	/**
@@ -208,6 +211,16 @@ class Upload extends Model
 		return Upload::whereName(end($segments))->whereType('directory')->get()->filter(function ($upload, $key) use ($path) {
 			return $upload->path == $path;
 		})->first();
+	}
+
+	public function createdByUser()
+	{
+		return $this->belongsTo(User::class, 'created_by');
+	}
+
+	public function updatedByUser()
+	{
+		return $this->belongsTo(User::class, 'updated_by');
 	}
 
 }

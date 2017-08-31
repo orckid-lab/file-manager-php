@@ -2,6 +2,8 @@
 
 namespace OrckidLab\FileManager\Core\Requests;
 
+use App\User;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Foundation\Http\FormRequest;
 use OrckidLab\FileManager\Core\Model\Upload;
@@ -62,6 +64,8 @@ class CreateFileRequest extends FormRequest
         $this->offsetSet('size', $file->getSize());
         $this->offsetSet('parent_id', $parent_directory->id);
         $this->offsetSet('token', md5($file_name . $this->path . strtotime(date('Y-m-d H:i:s'))));
+	    $this->offsetSet('created_by', Auth::id());
+	    $this->offsetSet('updated_by', Auth::id());
 
         $this->upload = Upload::create($this->all());
 

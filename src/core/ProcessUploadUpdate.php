@@ -3,6 +3,7 @@
 namespace OrckidLab\FileManager\Core;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 use OrckidLab\FileManager\Core\Model\Upload;
@@ -57,7 +58,10 @@ class ProcessUploadUpdate
 				$new_thumbnail = preg_replace('/(\.[^.]+)$/', sprintf('%s$1', '-thumb'), $updated_name);
 				Storage::move($this->upload->thumbnail_path, preg_replace($path_regex, $new_thumbnail, $this->upload->thumbnail_path));
 			}
-			$this->upload->update(['name' => $updated_name]);
+			$this->upload->update([
+				'name' => $updated_name,
+				'updated_by' => Auth::id()
+			]);
 
 			return $this->upload;
 		}
@@ -94,7 +98,11 @@ class ProcessUploadUpdate
 						$carry['moved']['files'][] = $upload->token;
 						$current_path = $destination->path;
 					}
-					$upload->update(['path' => $current_path, 'parent_id' => $destination->id]);
+					$upload->update([
+						'path' => $current_path,
+						'parent_id' => $destination->id,
+						'updated_by' => Auth::id()
+					]);
 				}
 			}
 			return $carry;
@@ -126,7 +134,11 @@ class ProcessUploadUpdate
 		});
 		$img->save(storage_path() . '/app/' . $this->upload->path . '/' . $this->upload->thumbnail);
 
-		$this->upload->update(['size' => $file->getSize(), 'updated_at' => new \DateTime()]);
+		$this->upload->update([
+			'size' => $file->getSize(),
+			'updated_at' => new \DateTime(),
+			'updated_by' => Auth::id()
+		]);
 		return $this->upload;
 	}
 
