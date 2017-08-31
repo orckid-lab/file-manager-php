@@ -5,8 +5,7 @@ use Illuminate\Support\Facades\Route;
 Route::group([
 
 	'prefix' => 'file-manager',
-	'namespace' => 'OrckidLab\FileManager\Core\Controllers',
-	'middleware' => 'auth'
+	'namespace' => 'OrckidLab\FileManager\Core\Controllers'
 
 ], function () {
 	Route::match(['get', 'post'], '/', 'FileManagerController@index');
